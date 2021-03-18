@@ -1,13 +1,19 @@
 package org.dps.admin
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.dps.admin.utils.toast
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,6 +29,15 @@ class MainActivity : AppCompatActivity() {
 // To listen for a radio button's checked/unchecked state changes
         radioGroup.setOnCheckedChangeListener { buttonView, isChecked ->
             // Responds to radio button being checked/unchecked
+        }
+
+        dobBtn.setOnClickListener {
+            val calendar = Calendar.getInstance(Locale.getDefault())
+            val datePickerDialog = DatePickerDialog(this,AlertDialog.THEME_HOLO_LIGHT,
+                    { view, year, month, dayOfMonth ->
+                        dobBtn.setText("$dayOfMonth/${month+1}/$year")
+                    }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
+            datePickerDialog.show()
         }
     }
 
