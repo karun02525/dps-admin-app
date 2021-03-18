@@ -173,6 +173,26 @@
                             android:text="Female"/>
 
                     </RadioGroup>
+
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/white"
+                        android:paddingStart="80dp"
+                        android:paddingEnd="10dp"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="10dp"
+                        android:text="Upload student photo"
+                        android:background="@drawable/file_upload_border"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:drawableStart="@drawable/ic_upload"
+                        android:layout_height="45dp"/>
+                    
                     
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -200,7 +220,7 @@
                         android:hint="Any Documents">
 
                         <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:id="@+id/sp_doc"
+                            android:id="@+id/sp_docs"
                             android:focusable="false"
                             android:inputType="none"
                             android:layout_width="match_parent"
@@ -224,6 +244,25 @@
                             android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/white"
+                        android:paddingStart="80dp"
+                        android:paddingEnd="10dp"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="10dp"
+                        android:text="Upload any documents"
+                        android:background="@drawable/file_upload_border"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:drawableStart="@drawable/ic_upload"
+                        android:layout_height="45dp"/>
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -624,6 +663,24 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/white"
+                        android:paddingStart="80dp"
+                        android:paddingEnd="10dp"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="10dp"
+                        android:text="Upload parent documents"
+                        android:background="@drawable/file_upload_border"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:drawableStart="@drawable/ic_upload"
+                        android:layout_height="45dp"/>
+
+
                 </LinearLayout>
 
                 <TextView
@@ -638,6 +695,21 @@
                     android:textStyle="bold" />
 
             </RelativeLayout>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:drawablePadding="10dp"
+                android:text="Submit"
+                android:background="@drawable/submit_border"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:layout_height="45dp"/>
+
 
         </LinearLayout>
 
