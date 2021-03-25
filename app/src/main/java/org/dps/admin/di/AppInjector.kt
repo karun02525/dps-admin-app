@@ -1,5 +1,6 @@
 package org.dps.admin.di
 
+import org.dps.admin.mvvm.ClassViewModel
 import org.dps.admin.mvvm.MainViewModel
 import org.dps.admin.network.RestClient
 import org.dps.admin.network.RestClient.webServices
@@ -20,5 +21,6 @@ val networkModule = module {
 val viewModelModule = module {
     viewModel {
         MainViewModel(get())
+        ClassViewModel(get())
     }
 }

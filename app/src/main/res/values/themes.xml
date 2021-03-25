@@ -14,9 +14,14 @@
         <!-- Customize your theme here. -->
     </style>
 
-
-    
-    <style name="TextLabel" parent="TextAppearance.Design.Hint">
-        <item name="android:textSize">16sp</item>
+    <style name="Theme.DPSAdminApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="Theme.DPSAdminApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DPSAdminApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

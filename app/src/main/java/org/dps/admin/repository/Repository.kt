@@ -21,7 +21,7 @@ class Repository(val restClient: RestClient) {
             try {
                 restClient.webServices().setSuggestionsAsync(query).await().let {
                     if (it.isSuccessful)
-                        userList.postValue(it.body()!!.data!!.addressList)
+                        userList.postValue(it.body()!!.data!!.addressList!!)
                     else
                         errorMess.value = isCheckAPIStatus(it.code(), it.errorBody())
                 }

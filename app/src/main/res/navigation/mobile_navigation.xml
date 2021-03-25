@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="org.dps.admin.ui.fragments.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_assign"
+        android:name="org.dps.admin.ui.fragments.AssignTeacherFragment"
+        android:label="Assign Teacher" />
+
+   <fragment
+        android:id="@+id/nav_class"
+        android:name="org.dps.admin.ui.fragments.CreateClassFragment"
+        android:label="Create Class" />
+    <fragment
+        android:id="@+id/nav_teacher"
+        android:name="org.dps.admin.ui.fragments.CreateTeacherFragment"
+        android:label="Create Teacher" />
+
+    <fragment
+        android:id="@+id/nav_student"
+        android:name="org.dps.admin.ui.fragments.CreateStudentFragment"
+        android:label="Create Student" />
+
+</navigation>
