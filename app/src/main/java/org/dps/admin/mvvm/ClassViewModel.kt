@@ -95,14 +95,10 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
         }
     }
 
-    fun createStudentAsync(class_id: String, section: String,teacher_id: String) {
-        val params: HashMap<String, Any> = HashMap()
-        params["class_id"] = class_id
-        params["section"] = section
-        params["teacher_id"] = teacher_id
+    fun createStudentAsync(params: HashMap<String, Any>) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                restClient.webServices().assignTeacherAsync(params).await().let {
+                restClient.webServices().createStudentAsync(params).await().let {
                     if (it.isSuccessful)
                         msg.value = JSONObject(it.body().toString()).optString("message")
                     else

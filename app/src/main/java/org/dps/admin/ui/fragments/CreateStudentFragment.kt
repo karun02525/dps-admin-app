@@ -60,7 +60,7 @@ class CreateStudentFragment : Fragment() {
             val calendar = Calendar.getInstance(Locale.getDefault())
             val datePickerDialog = DatePickerDialog(requireContext(), AlertDialog.THEME_HOLO_LIGHT,
                     { _, year, month, dayOfMonth ->
-                        dob = "$dayOfMonth/${month + 1}/$year"
+                        dob = "$dayOfMonth-${month + 1}-$year"
                         dobBtn.setText(dob)
                     }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
             datePickerDialog.show()
@@ -101,7 +101,7 @@ class CreateStudentFragment : Fragment() {
                 }
 
         //----------State---
-        val listState = arrayOf("Kaimur(Bhuabua)", "Rohtash", "Buxer", "Siwan")
+        val listState = arrayOf("Bihar","UP")
         val adapterS = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listState)
         sp_state.setAdapter(adapterS)
         sp_state.onItemClickListener =
@@ -137,8 +137,8 @@ class CreateStudentFragment : Fragment() {
         val motherFname = edit_mother_fname.text.toString()
         val motherLname = edit_mother_lname.text.toString()
         val motherSname = edit_mother_sname.text.toString()
-
         val parentPhone = edit_parent_phone.text.toString()
+        val parentId = edit_parent_id.text.toString()
 
         when {
             class_id.isBlank() -> {
@@ -206,9 +206,37 @@ class CreateStudentFragment : Fragment() {
             }
             parentPhone.isEmpty() -> {
                 mess("Please enter parent phone")
+            }parentId.isEmpty() -> {
+                mess("Please enter parent id number")
             }
             else -> {
-                mess("Done")
+                val p= HashMap<String, Any>()
+                p["class_id"]=class_id
+                p["fname"]=fname
+                p["lname"]=lname
+                p["surname"]=sname
+                p["gender"]=gender
+                p["dob"]=dob
+                p["rollno"]=rollno
+                p["phone"]=mobile
+                p["email"]=email
+                p["address"]=address
+                p["post_office"]=postOffice
+                p["police_station"]=policeStation
+                p["dist"]=distc
+                p["state"]=state
+                p["country"]=country
+                p["pincode"]=pincode
+                p["father_fname"]=fatherFname
+                p["father_lname"]=fatherLname
+                p["father_sname"]=fatherSname
+                p["mother_fname"]=motherFname
+                p["mother_lname"]=motherLname
+                p["mother_sname"]=motherSname
+                p["parent_phone"]=parentPhone
+                p["parent_id"]=parentId
+                hideShowProgress(true)
+                viewModel.createStudentAsync(p)
             }
         }
     }
