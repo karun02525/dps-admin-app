@@ -32,7 +32,13 @@
             android:label="Create Teacher" />
 
         <activity
-            android:name=".DashboardActivity">
+            android:name=".ui.create.ShowStudentActivity"
+            android:label="Show Student List" />
+
+        <activity
+            android:name=".DashboardActivity"
+            android:theme="@style/Theme.DPSAdminApp"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

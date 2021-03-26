@@ -8,10 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.adapter_create_menu.view.*
 import org.dps.admin.R
 import org.dps.admin.mvvm.CreateMenuModel
-import org.dps.admin.ui.create.AssignTeacherActivity
-import org.dps.admin.ui.create.CreateClassActivity
-import org.dps.admin.ui.create.CreateStudentActivity
-import org.dps.admin.ui.create.CreateTeacherActivity
+import org.dps.admin.ui.create.*
 import org.dps.admin.utils.startNewActivity
 
 
@@ -36,6 +33,9 @@ class CreateMenuAdapter(var list: List<CreateMenuModel> = listOf()) :
                 txt.text = model.title
             }.setOnClickListener {
                 when (model.id) {
+                    1 -> {
+                        it.context.startNewActivity(ShowStudentActivity::class.java)
+                    }
                     3 -> {
                         it.context.startNewActivity(AssignTeacherActivity::class.java)
                     }
