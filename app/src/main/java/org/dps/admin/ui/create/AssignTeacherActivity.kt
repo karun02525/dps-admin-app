@@ -1,14 +1,12 @@
-package org.dps.admin.ui.fragments
+package org.dps.admin.ui.create
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.fragment_assign_teacher.*
+import kotlinx.android.synthetic.main.activity_assign_teacher.*
 import org.dps.admin.R
 import org.dps.admin.model.DataClasses
 import org.dps.admin.model.TeacherData
@@ -16,18 +14,16 @@ import org.dps.admin.mvvm.ClassViewModel
 import org.dps.admin.utils.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class AssignTeacherFragment : Fragment() {
+class AssignTeacherActivity : AppCompatActivity() {
     private val viewModel: ClassViewModel by viewModel()
     private var class_id = ""
     private var teacher_id = ""
     private var sectionName = ""
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-       return inflater.inflate(R.layout.fragment_assign_teacher, container, false)
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_assign_teacher)
         hideShowProgress(true)
         setupViewModel()
 
@@ -40,22 +36,22 @@ class AssignTeacherFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel.classData.observe(requireActivity(), Observer {
+        viewModel.classData.observe(this, Observer {
             hideShowProgress(false)
             setSpClass(it)
         })
-        viewModel.teacherList.observe(requireActivity(), Observer {
+        viewModel.teacherList.observe(this, Observer {
             hideShowProgress(false)
             parseTeacher(it)
         })
-        viewModel.msg.observe(requireActivity(), Observer {
+        viewModel.msg.observe(this, Observer {
             hideShowProgress(false)
-            context?.toast(it)
+           toast(it)
         })
     }
 
     private fun setSpClass(list: List<DataClasses>) {
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         sp_classes.setAdapter(adapter)
 
@@ -68,7 +64,7 @@ class AssignTeacherFragment : Fragment() {
 
     }
     private fun parseTeacher(list: List<TeacherData>) {
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         sp_teacher.setAdapter(adapter)
 
@@ -82,7 +78,7 @@ class AssignTeacherFragment : Fragment() {
 
     private fun setSpSection(section: List<String>) {
         val adapter: ArrayAdapter<String> =
-            ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, section)
+            ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, section)
         sp_section.setAdapter(adapter)
         sp_section.onItemClickListener =
             AdapterView.OnItemClickListener { parent, arg1, position, id ->

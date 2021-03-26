@@ -16,6 +16,7 @@ import org.json.JSONObject
 class ClassViewModel(private val restClient: RestClient) : ViewModel() {
 
      val msg = MutableLiveData<String>()
+     val success = MutableLiveData<String>()
      val classData = MutableLiveData<List<DataClasses>>()
      val teacherList = MutableLiveData<List<TeacherData>>()
 
@@ -100,7 +101,7 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
             try {
                 restClient.webServices().createStudentAsync(params).await().let {
                     if (it.isSuccessful)
-                        msg.value = JSONObject(it.body().toString()).optString("message")
+                        success.value = JSONObject(it.body().toString()).optString("message")
                     else
                         msg.value = ApiStatus.isCheckAPIStatus(it.code(), it.errorBody())
                 }

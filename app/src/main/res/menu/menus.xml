@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/action_home"
+    android:enabled="true"
+    android:icon="@drawable/ic_home"
+    android:title="Home" />
+
+  <item
+    android:id="@+id/action_create"
+    android:enabled="true"
+    android:icon="@drawable/ic_noties"
+    android:title="Create" />
+
+
+  <item
+      android:id="@+id/action_notifications"
+      android:enabled="true"
+      android:icon="@drawable/ic_notifications"
+      android:title="Notification"
+      />
+
+    <item
+      android:id="@+id/action_profile"
+      android:enabled="true"
+      android:icon="@drawable/ic_person"
+      android:title="Profile"
+      />
+
+  <item
+      android:id="@+id/action_more"
+      android:enabled="true"
+      android:icon="@drawable/ic_read_more"
+      android:title="More"
+      />
+
+</menu>

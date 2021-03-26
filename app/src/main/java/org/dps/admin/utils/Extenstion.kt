@@ -2,6 +2,7 @@ package org.dps.admin.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.util.Log
 import android.view.View
@@ -45,4 +46,8 @@ fun Context.messToast(message: String): Snackbar {
     textView.setTextColor(Color.WHITE)
     sb.show()
     return sb
+}
+
+fun Context.startNewActivity(cls: Class<*>) {
+    this.startActivity(Intent(this, cls))
 }

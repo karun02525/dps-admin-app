@@ -15,8 +15,24 @@
         android:theme="@style/Theme.DPSAdminApp"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".ui.MainActivity"
-            android:theme="@style/Theme.DPSAdminApp.NoActionBar">
+        <activity
+            android:name=".ui.create.CreateClassActivity"
+            android:label="Create Class" />
+
+        <activity
+            android:name=".ui.create.AssignTeacherActivity"
+            android:label="Assign Teacher" />
+
+        <activity
+            android:name=".ui.create.CreateStudentActivity"
+            android:label="Create Student" />
+
+        <activity
+            android:name=".ui.create.CreateTeacherActivity"
+            android:label="Create Teacher" />
+
+        <activity
+            android:name=".DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

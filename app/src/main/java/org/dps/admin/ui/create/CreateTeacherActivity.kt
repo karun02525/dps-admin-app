@@ -1,20 +1,15 @@
-package org.dps.admin.ui.fragments
+package org.dps.admin.ui.create
 
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.fragment_create_student.*
-import kotlinx.android.synthetic.main.fragment_create_student.btnSubmit
-import kotlinx.android.synthetic.main.fragment_create_student.progress_circular
-import kotlinx.android.synthetic.main.fragment_create_student.sp_classes
+import kotlinx.android.synthetic.main.activity_create_student.*
 import org.dps.admin.R
 import org.dps.admin.model.DataClasses
 import org.dps.admin.mvvm.ClassViewModel
@@ -23,9 +18,9 @@ import org.dps.admin.utils.messToast
 import org.dps.admin.utils.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
+import kotlin.collections.HashMap
 
-class CreateStudentFragment : Fragment() {
-
+class CreateTeacherActivity : AppCompatActivity() {
     private val viewModel: ClassViewModel by viewModel()
     private var class_id = ""
     private var dob = ""
@@ -34,17 +29,11 @@ class CreateStudentFragment : Fragment() {
     private var distc = ""
     private var state = ""
     private var country = ""
-    private var pincode = ""
     private var gender = "Male"
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_create_student, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_create_teacher)
         hideShowProgress(true)
         setupViewModel()
 
@@ -58,11 +47,11 @@ class CreateStudentFragment : Fragment() {
 
         dobBtn.setOnClickListener {
             val calendar = Calendar.getInstance(Locale.getDefault())
-            val datePickerDialog = DatePickerDialog(requireContext(), AlertDialog.THEME_HOLO_LIGHT,
-                    { _, year, month, dayOfMonth ->
-                        dob = "$dayOfMonth-${month + 1}-$year"
-                        dobBtn.setText(dob)
-                    }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
+            val datePickerDialog = DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT,
+                { _, year, month, dayOfMonth ->
+                    dob = "$dayOfMonth-${month + 1}-$year"
+                    dobBtn.setText(dob)
+                }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
             datePickerDialog.show()
         }
 
@@ -76,47 +65,47 @@ class CreateStudentFragment : Fragment() {
     private fun setUpSpinner() {
         //----------PostOffice
         val list = arrayOf("Fakhrabad", "Kudra", "Mohania")
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
         sp_postoffice.setAdapter(adapter)
         sp_postoffice.onItemClickListener =
-                AdapterView.OnItemClickListener { _, _, position, _ ->
-                    postOffice = list[position]
-                }
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+                postOffice = list[position]
+            }
         //----------Police Station
         val listPolice = arrayOf("Kudra", "Bhabua", "Mohania", "Nuwo")
-        val adapterP = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listPolice)
+        val adapterP = ArrayAdapter(this, android.R.layout.simple_spinner_item, listPolice)
         sp_police_station.setAdapter(adapterP)
         sp_police_station.onItemClickListener =
-                AdapterView.OnItemClickListener { _, _, position, _ ->
-                    policeStation = listPolice[position]
-                }
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+                policeStation = listPolice[position]
+            }
 
         //----------Dist
         val listDist = arrayOf("Kaimur(Bhuabua)", "Rohtash", "Buxer", "Siwan")
-        val adapterD = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listDist)
+        val adapterD = ArrayAdapter(this, android.R.layout.simple_spinner_item, listDist)
         sp_dist.setAdapter(adapterD)
         sp_dist.onItemClickListener =
-                AdapterView.OnItemClickListener { _, _, position, _ ->
-                    distc = listDist[position]
-                }
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+                distc = listDist[position]
+            }
 
         //----------State---
-        val listState = arrayOf("Bihar","UP")
-        val adapterS = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listState)
+        val listState = arrayOf("Bihar", "UP")
+        val adapterS = ArrayAdapter(this, android.R.layout.simple_spinner_item, listState)
         sp_state.setAdapter(adapterS)
         sp_state.onItemClickListener =
-                AdapterView.OnItemClickListener { _, _, position, _ ->
-                    state = listState[position]
-                }
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+                state = listState[position]
+            }
 
         //----------Country---
         val listCountry = arrayOf("India", "USA")
-        val adapterC = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listCountry)
+        val adapterC = ArrayAdapter(this, android.R.layout.simple_spinner_item, listCountry)
         sp_country.setAdapter(adapterC)
         sp_country.onItemClickListener =
-                AdapterView.OnItemClickListener { _, _, position, _ ->
-                    country = listCountry[position]
-                }
+            AdapterView.OnItemClickListener { _, _, position, _ ->
+                country = listCountry[position]
+            }
 
 
     }
@@ -207,8 +196,8 @@ class CreateStudentFragment : Fragment() {
             parentPhone.isEmpty() -> {
                 mess("Please enter parent phone")
             }parentId.isEmpty() -> {
-                mess("Please enter parent id number")
-            }
+            mess("Please enter parent id number")
+        }
             else -> {
                 val p= HashMap<String, Any>()
                 p["class_id"]=class_id
@@ -242,36 +231,40 @@ class CreateStudentFragment : Fragment() {
     }
 
     private fun mess(s: String) {
-        context?.hideSoftKeyboard()
-        context?.messToast(s)
+      hideSoftKeyboard()
+      messToast(s)
     }
 
     private fun setupViewModel() {
-        viewModel.classData.observe(requireActivity(), Observer {
+        viewModel.classData.observe(this, Observer {
             hideShowProgress(false)
             setSpClass(it)
         })
-        viewModel.msg.observe(requireActivity(), Observer {
+        viewModel.success.observe(this, Observer {
             hideShowProgress(false)
-            context?.toast(it)
+            toast(it)
+        })
+        viewModel.msg.observe(this, Observer {
+            hideShowProgress(false)
+            toast(it)
         })
     }
 
     private fun setSpClass(list: List<DataClasses>) {
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         sp_classes.setAdapter(adapter)
 
         sp_classes.onItemClickListener =
-                AdapterView.OnItemClickListener { parent, _, position, _ ->
-                    val data: DataClasses = parent.adapter.getItem(position) as DataClasses
-                    class_id = data.id.toString()
-                }
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                val data: DataClasses = parent.adapter.getItem(position) as DataClasses
+                class_id = data.id.toString()
+            }
 
     }
 
     private fun hideShowProgress(flag: Boolean) {
         if (flag) progress_circular.visibility = View.VISIBLE else progress_circular.visibility =
-                View.GONE
+            View.GONE
     }
 }

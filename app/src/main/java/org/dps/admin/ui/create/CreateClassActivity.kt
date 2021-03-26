@@ -1,29 +1,22 @@
-package org.dps.admin.ui.fragments
+package org.dps.admin.ui.create
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.fragment_create_classes.*
+import kotlinx.android.synthetic.main.activity_create_class.*
 import org.dps.admin.R
 import org.dps.admin.mvvm.ClassViewModel
 import org.dps.admin.utils.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class CreateClassFragment : Fragment() {
-
+class CreateClassActivity : AppCompatActivity() {
     private val viewModel: ClassViewModel by viewModel()
     var sectionArray = mutableListOf<String>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-       return inflater.inflate(R.layout.fragment_create_classes, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_create_class)
         setUpUI()
         setupViewModel()
     }
@@ -63,10 +56,10 @@ class CreateClassFragment : Fragment() {
             val msg = edit_classes.text.toString()
             when {
                 msg.isEmpty() -> {
-                    context?.toast("Please enter classes")
+                    toast("Please enter classes")
                 }
                 sectionArray.isEmpty() -> {
-                    context?.toast("Please select one section")
+                    toast("Please select one section")
                 }
                 else -> {
                     hideShowProgress(true)
@@ -77,10 +70,10 @@ class CreateClassFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel.msg.observe(requireActivity(), Observer {
+        viewModel.msg.observe(this, Observer {
             hideShowProgress(false)
             clearField()
-            context?.toast(it)
+            toast(it)
         })
     }
 

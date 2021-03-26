@@ -37,38 +37,17 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:layout_weight="1"
-                            android:hint="Classes">
+                            android:hint="Select Class">
 
                             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                                 android:id="@+id/sp_classes"
-                                android:focusable="false"
-                                android:inputType="none"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="22dp"
-                            android:layout_marginEnd="11dp"
-                            android:layout_weight="1"
-                            android:hint="Section">
-
-                            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                                android:id="@+id/sp_section"
                                 android:focusable="false"
                                 android:inputType="none"
                                 android:layout_width="match_parent"
@@ -95,6 +74,7 @@
                             android:hint="First name">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_fname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
@@ -110,6 +90,7 @@
                             android:hint="Last name">
 
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_lname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
 
@@ -127,6 +108,7 @@
                         android:hint="Surname">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edit_sname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
@@ -143,6 +125,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:focusable="false"
+                            android:id="@+id/dobBtn"
                             android:inputType="none"
                             android:drawableEnd="@drawable/ic_calendar"
                             android:layout_height="wrap_content" />
@@ -151,15 +134,16 @@
 
 
                     <RadioGroup
+                        android:id="@+id/radioGroup"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal"
-                        android:checkedButton="@+id/radio_button_1"
+                        android:checkedButton="@+id/radio_male"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/radio_button_1"
+                            android:id="@+id/radio_male"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Male"/>
@@ -169,25 +153,6 @@
                             android:text="Female"/>
 
                     </RadioGroup>
-
-
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:textColor="@color/white"
-                        android:paddingStart="80dp"
-                        android:paddingEnd="10dp"
-                        android:textSize="16sp"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="10dp"
-                        android:text="Upload student photo"
-                        android:background="@drawable/file_upload_border"
-                        android:textAllCaps="false"
-                        android:textStyle="bold"
-                        android:drawableStart="@drawable/ic_upload"
-                        android:layout_height="45dp"/>
 
 
 
@@ -201,63 +166,11 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/edit_rollno"
                             android:maxLength="5"
                             android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:hint="Any Documents">
-
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:focusable="false"
-                            android:inputType="none"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:placeholderText="Enter document number"
-                        android:hint="Document Number">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:inputType="phone"
-                            android:maxLength="10"
-                            android:layout_height="wrap_content" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/white"
-                        android:paddingStart="80dp"
-                        android:paddingEnd="10dp"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="10dp"
-                        android:text="Upload any documents"
-                        android:background="@drawable/file_upload_border"
-                        android:textAllCaps="false"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:drawableStart="@drawable/ic_upload"
-                        android:layout_height="45dp"/>
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -270,6 +183,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/edit_mobile"
                             android:inputType="phone"
                             android:maxLength="10"
                             android:layout_height="wrap_content" />
@@ -286,6 +200,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/edit_email"
                             android:inputType="textEmailAddress"
                             android:maxLength="30"
                             android:layout_height="wrap_content" />
@@ -303,6 +218,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/edit_address"
                             android:maxLength="150"
                             android:minLines="2"
                             android:gravity="top"
@@ -328,6 +244,7 @@
 
                             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                                 android:focusable="false"
+                                android:id="@+id/sp_postoffice"
                                 android:inputType="none"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
@@ -346,6 +263,7 @@
 
                             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                                 android:focusable="false"
+                                android:id="@+id/sp_police_station"
                                 android:inputType="none"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
@@ -372,6 +290,7 @@
 
                             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                                 android:focusable="false"
+                                android:id="@+id/sp_dist"
                                 android:inputType="none"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
@@ -390,6 +309,7 @@
 
                             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                                 android:focusable="false"
+                                android:id="@+id/sp_state"
                                 android:inputType="none"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
@@ -415,6 +335,7 @@
 
                             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                                 android:focusable="false"
+                                android:id="@+id/sp_country"
                                 android:inputType="none"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" />
@@ -434,6 +355,7 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:maxLength="6"
+                                android:id="@+id/edit_pincode"
                                 android:inputType="number"
                                 android:layout_height="wrap_content" />
 
@@ -441,25 +363,6 @@
 
 
                     </LinearLayout>
-
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:placeholderText="Enter email id"
-                        android:hint="Email id">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:inputType="textEmailAddress"
-                            android:maxLength="30"
-                            android:layout_height="wrap_content" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
 
                 </LinearLayout>
 
@@ -469,7 +372,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="15dp"
                     android:background="#ffffff"
-                    android:text=" Teacher "
+                    android:text=" Student "
                     android:textColor="#03A9F4"
                     android:textSize="19sp"
                     android:textStyle="bold" />
@@ -510,6 +413,7 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:maxLength="15"
+                                android:id="@+id/edit_father_fname"
                                 android:layout_height="wrap_content" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -525,6 +429,7 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:maxLength="15"
+                                android:id="@+id/edit_father_lname"
                                 android:layout_height="wrap_content" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -542,6 +447,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/edit_father_sname"
                             android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -564,6 +470,7 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:maxLength="15"
+                                android:id="@+id/edit_mother_fname"
                                 android:layout_height="wrap_content" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -579,6 +486,7 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="match_parent"
                                 android:maxLength="15"
+                                android:id="@+id/edit_mother_lname"
                                 android:layout_height="wrap_content" />
 
                         </com.google.android.material.textfield.TextInputLayout>
@@ -596,6 +504,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
+                            android:id="@+id/edit_mother_sname"
                             android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -612,64 +521,83 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:inputType="phone"
+                            android:id="@+id/edit_parent_phone"
                             android:maxLength="10"
                             android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginStart="10dp"
-                        android:hint="Any Documents">
-
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:focusable="false"
-                            android:inputType="none"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        app:placeholderText="Enter document number"
-                        android:hint="Document Number">
+                        app:placeholderText="Enter Parent Id Number"
+                        android:hint="Parent Id Number">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
-                            android:inputType="phone"
-                            android:maxLength="10"
+                            android:inputType="text"
+                            android:id="@+id/edit_parent_id"
+                            android:textAllCaps="true"
+                            android:maxLength="6"
                             android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:textColor="@color/white"
-                        android:paddingStart="80dp"
-                        android:paddingEnd="10dp"
-                        android:textSize="16sp"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="10dp"
-                        android:text="Upload parent documents"
-                        android:background="@drawable/file_upload_border"
-                        android:textAllCaps="false"
-                        android:textStyle="bold"
-                        android:drawableStart="@drawable/ic_upload"
-                        android:layout_height="45dp"/>
+                    <!--   <com.google.android.material.textfield.TextInputLayout
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginEnd="10dp"
+                           android:layout_marginStart="10dp"
+                           android:hint="Any Documents">
+
+                           <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                               android:focusable="false"
+                               android:inputType="none"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content" />
+
+                       </com.google.android.material.textfield.TextInputLayout>
 
 
+                       <com.google.android.material.textfield.TextInputLayout
+                           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_margin="10dp"
+                           app:placeholderText="Enter document number"
+                           android:hint="Document Number">
+
+                           <com.google.android.material.textfield.TextInputEditText
+                               android:layout_width="match_parent"
+                               android:inputType="phone"
+                               android:maxLength="10"
+                               android:layout_height="wrap_content" />
+
+                       </com.google.android.material.textfield.TextInputLayout>
+
+
+                       <com.google.android.material.textview.MaterialTextView
+                           android:layout_width="match_parent"
+                           android:layout_marginStart="10dp"
+                           android:layout_marginEnd="10dp"
+                           android:textColor="@color/white"
+                           android:paddingStart="80dp"
+                           android:paddingEnd="10dp"
+                           android:textSize="16sp"
+                           android:gravity="center_vertical"
+                           android:drawablePadding="10dp"
+                           android:text="Upload parent documents"
+                           android:background="@drawable/file_upload_border"
+                           android:textAllCaps="false"
+                           android:textStyle="bold"
+                           android:drawableStart="@drawable/ic_upload"
+                           android:layout_height="45dp"/>
+
+   -->
                 </LinearLayout>
 
                 <TextView

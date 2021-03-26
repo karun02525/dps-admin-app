@@ -14,14 +14,16 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.DPSAdminApp.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
     </style>
 
-    <style name="Theme.DPSAdminApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
 
-    <style name="Theme.DPSAdminApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--Custom Dialog-->
 
 
 </resources>
