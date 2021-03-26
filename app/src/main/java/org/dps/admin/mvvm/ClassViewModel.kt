@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import org.dps.admin.App
 import org.dps.admin.R
 import org.dps.admin.model.DataClasses
+import org.dps.admin.model.StudentData
 import org.dps.admin.model.TeacherData
 import org.dps.admin.network.ApiStatus
 import org.dps.admin.network.RestClient
@@ -19,6 +20,7 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
      val success = MutableLiveData<String>()
      val classData = MutableLiveData<List<DataClasses>>()
      val teacherList = MutableLiveData<List<TeacherData>>()
+     val studentsList = MutableLiveData<List<StudentData>>()
 
     init {
         getClasses()
@@ -102,6 +104,21 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
                 restClient.webServices().createStudentAsync(params).await().let {
                     if (it.isSuccessful)
                         success.value = JSONObject(it.body().toString()).optString("message")
+                    else
+                        msg.value = ApiStatus.isCheckAPIStatus(it.code(), it.errorBody())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                msg.value = App.appContext?.getString(R.string.no_internet_available)
+            }
+        }
+    }
+    fun getStudentDataAsync(class_id: String) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                restClient.webServices().getStudentDataAsync(class_id).await().let {
+                    if (it.isSuccessful)
+                        studentsList.value= it.body()!!.data!!
                     else
                         msg.value = ApiStatus.isCheckAPIStatus(it.code(), it.errorBody())
                 }

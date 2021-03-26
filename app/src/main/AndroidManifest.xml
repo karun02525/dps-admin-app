@@ -33,7 +33,9 @@
 
         <activity
             android:name=".ui.create.ShowStudentActivity"
-            android:label="Show Student List" />
+            />
+
+        <activity android:name=".ui.create.ShowTeacherActivity" />
 
         <activity
             android:name=".DashboardActivity"

@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.adapter_show_students.view.*
+import kotlinx.android.synthetic.main.adapter_show_teacher.view.*
 import org.dps.admin.R
-import org.dps.admin.model.StudentData
+import org.dps.admin.model.TeacherData
 
 
-class ShowStudentsAdapter(var list: List<StudentData> = listOf()) : RecyclerView.Adapter<ShowStudentsAdapter.ViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.adapter_show_students, parent, false))
+class ShowTeacherAdapter(var list: List<TeacherData> = listOf()) : RecyclerView.Adapter<ShowTeacherAdapter.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.adapter_show_teacher, parent, false))
     
     override fun getItemCount() = list.size
 
@@ -21,11 +21,11 @@ class ShowStudentsAdapter(var list: List<StudentData> = listOf()) : RecyclerView
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n")
-        fun bindItems(model: StudentData) {
+        fun bindItems(model: TeacherData) {
             itemView.run {
                // Glide.with(context).load(model.avatar).into(ivProfileUser)
                 tvUserContactName.text = model.fname + " " + model.lname
-                tvClass.text = model.rollno
+                tvMess.text = model.phone +" "+ model.qualification
             }
         }
     }

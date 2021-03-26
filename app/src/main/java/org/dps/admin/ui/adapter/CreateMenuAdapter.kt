@@ -36,6 +36,9 @@ class CreateMenuAdapter(var list: List<CreateMenuModel> = listOf()) :
                     1 -> {
                         it.context.startNewActivity(ShowStudentActivity::class.java)
                     }
+                    2 -> {
+                        it.context.startNewActivity(ShowTeacherActivity::class.java)
+                    }
                     3 -> {
                         it.context.startNewActivity(AssignTeacherActivity::class.java)
                     }

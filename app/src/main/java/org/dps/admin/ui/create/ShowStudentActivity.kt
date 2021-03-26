@@ -37,7 +37,7 @@ class ShowStudentActivity : AppCompatActivity() {
 
         btnSubmit.setOnClickListener {
             hideShowProgress(true)
-           // viewModel.assignTeacherAsync(class_id,sectionName)
+            viewModel.getStudentDataAsync(class_id)
         }
 
 
@@ -46,18 +46,6 @@ class ShowStudentActivity : AppCompatActivity() {
 
         tv_toolbar.text="List of Students"
 
-        val list: ArrayList<CreateMenuModel> = arrayListOf()
-        list.run {
-            add(CreateMenuModel(1, "See Students", R.drawable.ic_user))
-            add(CreateMenuModel(2, "See Teacher", R.drawable.ic_open_book))
-            add(CreateMenuModel(3, "Assign Teacher", R.drawable.ic_noticeboard))
-            add(CreateMenuModel(4, "Create Student", R.drawable.ic_attendance))
-            add(CreateMenuModel(5, "Create Teacher", R.drawable.ic_report))
-            add(CreateMenuModel(6, "Create Class", R.drawable.ic_wallet))
-        }
-        mAdapter.list = list
-        rv_show_students.adapter = mAdapter
-        mAdapter.notifyDataSetChanged()
     }
 
     private fun setupViewModel() {
@@ -68,6 +56,12 @@ class ShowStudentActivity : AppCompatActivity() {
         viewModel.msg.observe(this, Observer {
             hideShowProgress(false)
            toast(it)
+        })
+        viewModel.studentsList.observe(this, Observer {
+            hideShowProgress(false)
+            mAdapter.list = it
+            rv_show_students.adapter = mAdapter
+            mAdapter.notifyDataSetChanged()
         })
     }
 

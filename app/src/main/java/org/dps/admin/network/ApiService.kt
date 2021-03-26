@@ -5,6 +5,7 @@ import org.dps.admin.model.Suggestion
 import kotlinx.coroutines.Deferred
 import okhttp3.RequestBody
 import org.dps.admin.model.Classes
+import org.dps.admin.model.StudentModel
 import org.dps.admin.model.TeacherModel
 import org.json.JSONObject
 import retrofit2.Response
@@ -17,6 +18,9 @@ interface ApiService {
 
     @GET("/compassLocation/rest/address/autocomplete?queryString=airtel")
     fun setSuggestionsAsync(@Query("city") cityName: String): Deferred<Response<Suggestion>>
+
+    @GET("/api/get-student")
+    fun getStudentDataAsync(@Query("class_id") class_id: String): Deferred<Response<StudentModel>>
 
     @GET("/api/teacher")
     fun getTeacherAsync(): Deferred<Response<TeacherModel>>

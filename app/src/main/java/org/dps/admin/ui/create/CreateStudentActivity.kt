@@ -224,6 +224,7 @@ class CreateStudentActivity : AppCompatActivity() {
                 p["mother_sname"]=motherSname
                 p["parent_phone"]=parentPhone
                 p["parent_id"]=parentId
+                p["student_picture"]=""
                 hideShowProgress(true)
                 viewModel.createStudentAsync(p)
             }

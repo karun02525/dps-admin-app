@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.fragment_create.*
 import org.dps.admin.R
 import org.dps.admin.mvvm.CreateMenuModel
@@ -29,6 +30,11 @@ class CreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        btn_back.visibility=View.GONE
+        tv_toolbar.text="Creates Info"
+
+
         val list: ArrayList<CreateMenuModel> = arrayListOf()
         list.run {
             add(CreateMenuModel(1, "See Students", R.drawable.ic_user))
