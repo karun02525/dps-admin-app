@@ -9,9 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.activity_create_student.*
+import kotlinx.android.synthetic.main.activity_create_teacher.*
 import org.dps.admin.R
-import org.dps.admin.model.DataClasses
 import org.dps.admin.mvvm.ClassViewModel
 import org.dps.admin.utils.hideSoftKeyboard
 import org.dps.admin.utils.messToast
@@ -22,10 +21,8 @@ import kotlin.collections.HashMap
 
 class CreateTeacherActivity : AppCompatActivity() {
     private val viewModel: ClassViewModel by viewModel()
-    private var class_id = ""
     private var dob = ""
     private var postOffice = ""
-    private var policeStation = ""
     private var distc = ""
     private var state = ""
     private var country = ""
@@ -34,9 +31,7 @@ class CreateTeacherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_teacher)
-        hideShowProgress(true)
         setupViewModel()
-
         setUpSpinner()
 
         btnSubmit.setOnClickListener {
@@ -48,10 +43,10 @@ class CreateTeacherActivity : AppCompatActivity() {
         dobBtn.setOnClickListener {
             val calendar = Calendar.getInstance(Locale.getDefault())
             val datePickerDialog = DatePickerDialog(this, AlertDialog.THEME_HOLO_LIGHT,
-                { _, year, month, dayOfMonth ->
-                    dob = "$dayOfMonth-${month + 1}-$year"
-                    dobBtn.setText(dob)
-                }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
+                    { _, year, month, dayOfMonth ->
+                        dob = "$dayOfMonth-${month + 1}-$year"
+                        dobBtn.setText(dob)
+                    }, calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DAY_OF_MONTH])
             datePickerDialog.show()
         }
 
@@ -68,44 +63,36 @@ class CreateTeacherActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
         sp_postoffice.setAdapter(adapter)
         sp_postoffice.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                postOffice = list[position]
-            }
-        //----------Police Station
-        val listPolice = arrayOf("Kudra", "Bhabua", "Mohania", "Nuwo")
-        val adapterP = ArrayAdapter(this, android.R.layout.simple_spinner_item, listPolice)
-        sp_police_station.setAdapter(adapterP)
-        sp_police_station.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                policeStation = listPolice[position]
-            }
+                AdapterView.OnItemClickListener { _, _, position, _ ->
+                    postOffice = list[position]
+                }
 
         //----------Dist
         val listDist = arrayOf("Kaimur(Bhuabua)", "Rohtash", "Buxer", "Siwan")
         val adapterD = ArrayAdapter(this, android.R.layout.simple_spinner_item, listDist)
         sp_dist.setAdapter(adapterD)
         sp_dist.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                distc = listDist[position]
-            }
+                AdapterView.OnItemClickListener { _, _, position, _ ->
+                    distc = listDist[position]
+                }
 
         //----------State---
         val listState = arrayOf("Bihar", "UP")
         val adapterS = ArrayAdapter(this, android.R.layout.simple_spinner_item, listState)
         sp_state.setAdapter(adapterS)
         sp_state.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                state = listState[position]
-            }
+                AdapterView.OnItemClickListener { _, _, position, _ ->
+                    state = listState[position]
+                }
 
         //----------Country---
         val listCountry = arrayOf("India", "USA")
         val adapterC = ArrayAdapter(this, android.R.layout.simple_spinner_item, listCountry)
         sp_country.setAdapter(adapterC)
         sp_country.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                country = listCountry[position]
-            }
+                AdapterView.OnItemClickListener { _, _, position, _ ->
+                    country = listCountry[position]
+                }
 
 
     }
@@ -114,25 +101,21 @@ class CreateTeacherActivity : AppCompatActivity() {
         val fname = edit_fname.text.toString()
         val lname = edit_lname.text.toString()
         val sname = edit_sname.text.toString()
-        val rollno = edit_rollno.text.toString()
+        val regNo = edit_regno.text.toString()
+        val qualification = edit_qualification.text.toString()
         val mobile = edit_mobile.text.toString()
+        val alternate_no = edit_alternate_no.text.toString()
         val email = edit_email.text.toString()
         val address = edit_address.text.toString()
         val pincode = edit_pincode.text.toString()
-        val fatherFname = edit_father_fname.text.toString()
-        val fatherLname = edit_father_lname.text.toString()
-        val fatherSname = edit_father_sname.text.toString()
 
-        val motherFname = edit_mother_fname.text.toString()
-        val motherLname = edit_mother_lname.text.toString()
-        val motherSname = edit_mother_sname.text.toString()
+        val parentFname = edit_parent_fname.text.toString()
+        val parentLname = edit_parent_lname.text.toString()
+        val parentSname = edit_parent_sname.text.toString()
         val parentPhone = edit_parent_phone.text.toString()
-        val parentId = edit_parent_id.text.toString()
+        val parentOccupation = edit_parent_occupation.text.toString()
 
         when {
-            class_id.isBlank() -> {
-                mess("Please select class")
-            }
             fname.isBlank() -> {
                 mess("Please enter first name")
             }
@@ -145,11 +128,17 @@ class CreateTeacherActivity : AppCompatActivity() {
             dob.isEmpty() -> {
                 mess("Please select date of birth")
             }
-            rollno.isEmpty() -> {
-                mess("Please enter roll no")
+            regNo.isEmpty() -> {
+                mess("Please enter registration number")
+            }
+            qualification.isEmpty() -> {
+                mess("Please enter qualification")
             }
             mobile.isEmpty() -> {
                 mess("Please enter mobile no")
+            }
+            alternate_no.isEmpty() -> {
+                mess("Please enter alternate mobile number")
             }
             email.isEmpty() -> {
                 mess("Please enter email id")
@@ -159,9 +148,6 @@ class CreateTeacherActivity : AppCompatActivity() {
             }
             postOffice.isEmpty() -> {
                 mess("Please enter post office")
-            }
-            policeStation.isEmpty() -> {
-                mess("Please enter police station")
             }
             distc.isEmpty() -> {
                 mess("Please enter district")
@@ -175,71 +161,57 @@ class CreateTeacherActivity : AppCompatActivity() {
             pincode.isEmpty() -> {
                 mess("Please enter valid pin code")
             }
-            fatherFname.isEmpty() -> {
-                mess("Please enter father first name")
+            parentFname.isEmpty() -> {
+                mess("Please enter first name")
             }
-            fatherLname.isEmpty() -> {
-                mess("Please enter father last name")
+            parentLname.isEmpty() -> {
+                mess("Please enter last name")
             }
-            fatherSname.isEmpty() -> {
-                mess("Please enter father surname")
-            }
-            motherFname.isEmpty() -> {
-                mess("Please enter mother first name")
-            }
-            motherLname.isEmpty() -> {
-                mess("Please enter mother last name")
-            }
-            motherSname.isEmpty() -> {
-                mess("Please enter mother surname")
+            parentSname.isEmpty() -> {
+                mess("Please enter surname")
             }
             parentPhone.isEmpty() -> {
                 mess("Please enter parent phone")
-            }parentId.isEmpty() -> {
-            mess("Please enter parent id number")
-        }
+            }
+            parentOccupation.isEmpty() -> {
+                mess("Please enter occupation")
+            }
             else -> {
-                val p= HashMap<String, Any>()
-                p["class_id"]=class_id
-                p["fname"]=fname
-                p["lname"]=lname
-                p["surname"]=sname
-                p["gender"]=gender
-                p["dob"]=dob
-                p["rollno"]=rollno
-                p["phone"]=mobile
-                p["email"]=email
-                p["address"]=address
-                p["post_office"]=postOffice
-                p["police_station"]=policeStation
-                p["dist"]=distc
-                p["state"]=state
-                p["country"]=country
-                p["pincode"]=pincode
-                p["father_fname"]=fatherFname
-                p["father_lname"]=fatherLname
-                p["father_sname"]=fatherSname
-                p["mother_fname"]=motherFname
-                p["mother_lname"]=motherLname
-                p["mother_sname"]=motherSname
-                p["parent_phone"]=parentPhone
-                p["parent_id"]=parentId
+                val p = HashMap<String, Any>()
+                p["fname"] = fname
+                p["lname"] = lname
+                p["surname"] = sname
+                p["gender"] = gender
+                p["dob"] = dob
+                p["registration_no"] = regNo
+                p["qualification"] = qualification
+                p["phone"] = mobile
+                p["alternate_no"] = alternate_no
+                p["email"] = email
+                p["address"] = address
+                p["post_office"] = postOffice
+                p["dist"] = distc
+                p["state"] = state
+                p["country"] = country
+                p["pincode"] = pincode
+                p["parent_fname"] = parentFname
+                p["parent_lname"] = parentLname
+                p["parent_sname"] = parentSname
+                p["parent_phone"] = parentPhone
+                p["parent_occupation"] = parentOccupation
+                p["teacher_picture"] = ""
                 hideShowProgress(true)
-                viewModel.createStudentAsync(p)
+                viewModel.createTeacherAsync(p)
             }
         }
     }
 
     private fun mess(s: String) {
-      hideSoftKeyboard()
-      messToast(s)
+        hideSoftKeyboard()
+        messToast(s)
     }
 
     private fun setupViewModel() {
-        viewModel.classData.observe(this, Observer {
-            hideShowProgress(false)
-            setSpClass(it)
-        })
         viewModel.success.observe(this, Observer {
             hideShowProgress(false)
             toast(it)
@@ -250,21 +222,9 @@ class CreateTeacherActivity : AppCompatActivity() {
         })
     }
 
-    private fun setSpClass(list: List<DataClasses>) {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        sp_classes.setAdapter(adapter)
-
-        sp_classes.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, _, position, _ ->
-                val data: DataClasses = parent.adapter.getItem(position) as DataClasses
-                class_id = data.id.toString()
-            }
-
-    }
 
     private fun hideShowProgress(flag: Boolean) {
         if (flag) progress_circular.visibility = View.VISIBLE else progress_circular.visibility =
-            View.GONE
+                View.GONE
     }
 }

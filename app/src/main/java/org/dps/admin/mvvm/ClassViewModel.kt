@@ -113,6 +113,22 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
             }
         }
     }
+
+    fun createTeacherAsync(params: HashMap<String, Any>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                restClient.webServices().createTeacherAsync(params).await().let {
+                    if (it.isSuccessful)
+                        success.value = JSONObject(it.body().toString()).optString("message")
+                    else
+                        msg.value = ApiStatus.isCheckAPIStatus(it.code(), it.errorBody())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                msg.value = App.appContext?.getString(R.string.no_internet_available)
+            }
+        }
+    }
     fun getStudentDataAsync(class_id: String) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
