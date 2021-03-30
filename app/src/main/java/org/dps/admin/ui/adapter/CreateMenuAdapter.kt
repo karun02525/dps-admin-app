@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.adapter_create_menu.view.*
 import org.dps.admin.R
-import org.dps.admin.mvvm.CreateMenuModel
+import org.dps.admin.model.CreateMenuModel
 import org.dps.admin.ui.create.*
 import org.dps.admin.utils.startNewActivity
 
@@ -43,12 +43,15 @@ class CreateMenuAdapter(var list: List<CreateMenuModel> = listOf()) :
                         it.context.startNewActivity(AssignTeacherActivity::class.java)
                     }
                     4 -> {
-                        it.context.startNewActivity(CreateStudentActivity::class.java)
+                        it.context.startNewActivity(AssignSectionActivity::class.java)
                     }
                     5 -> {
-                        it.context.startNewActivity(CreateTeacherActivity::class.java)
+                        it.context.startNewActivity(CreateStudentActivity::class.java)
                     }
                     6 -> {
+                        it.context.startNewActivity(CreateTeacherActivity::class.java)
+                    }
+                    7 -> {
                         it.context.startNewActivity(CreateClassActivity::class.java)
                     }
                 }

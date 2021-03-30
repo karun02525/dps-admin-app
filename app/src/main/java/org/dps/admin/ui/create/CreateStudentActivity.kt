@@ -23,6 +23,7 @@ import kotlin.collections.HashMap
 class CreateStudentActivity : AppCompatActivity() {
     private val viewModel: ClassViewModel by viewModel()
     private var class_id = ""
+    private var className = ""
     private var dob = ""
     private var postOffice = ""
     private var policeStation = ""
@@ -41,8 +42,6 @@ class CreateStudentActivity : AppCompatActivity() {
 
         btnSubmit.setOnClickListener {
             isCheckUI()
-            //hideShowProgress(true)
-            // viewModel.assignTeacherAsync(class_id,sectionName,teacher_id)
         }
 
         dobBtn.setOnClickListener {
@@ -128,6 +127,7 @@ class CreateStudentActivity : AppCompatActivity() {
         val motherSname = edit_mother_sname.text.toString()
         val parentPhone = edit_parent_phone.text.toString()
         val parentId = edit_parent_id.text.toString()
+        val parentOccupation = edit_parent_occupation.text.toString()
 
         when {
             class_id.isBlank() -> {
@@ -195,12 +195,16 @@ class CreateStudentActivity : AppCompatActivity() {
             }
             parentPhone.isEmpty() -> {
                 mess("Please enter parent phone")
+            }
+            parentOccupation.isEmpty() -> {
+                mess("Please enter occupation")
             }parentId.isEmpty() -> {
             mess("Please enter parent id number")
         }
             else -> {
                 val p= HashMap<String, Any>()
                 p["class_id"]=class_id
+                p["class_name"]=className
                 p["fname"]=fname
                 p["lname"]=lname
                 p["surname"]=sname
@@ -223,8 +227,9 @@ class CreateStudentActivity : AppCompatActivity() {
                 p["mother_lname"]=motherLname
                 p["mother_sname"]=motherSname
                 p["parent_phone"]=parentPhone
+                p["parent_occupation"]=parentOccupation
                 p["parent_id"]=parentId
-                p["student_picture"]=""
+                p["student_picture"]="avatar"
                 hideShowProgress(true)
                 viewModel.createStudentAsync(p)
             }
@@ -260,6 +265,7 @@ class CreateStudentActivity : AppCompatActivity() {
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val data: DataClasses = parent.adapter.getItem(position) as DataClasses
                 class_id = data.id.toString()
+                className = data.classname.toString()
             }
 
     }

@@ -46,6 +46,7 @@ def loggingInterceptorVersion = '3.9.1'
 def androidArchitectureVersion = "1.1.0"
 def koinVersion = '2.0.1'
 def glideVersion = '4.11.0'
+def lottieVersion = "3.4.0"
 
 
 dependencies {
@@ -85,6 +86,8 @@ dependencies {
     //Koin for kotlin Dependency Injection
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-viewmodel:$koinVersion"
+
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 
     //dependency for coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"

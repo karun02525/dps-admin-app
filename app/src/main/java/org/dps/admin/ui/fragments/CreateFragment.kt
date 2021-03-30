@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.fragment_create.*
 import org.dps.admin.R
-import org.dps.admin.mvvm.CreateMenuModel
+import org.dps.admin.model.CreateMenuModel
 import org.dps.admin.ui.adapter.CreateMenuAdapter
 
 class CreateFragment : Fragment() {
@@ -40,9 +40,10 @@ class CreateFragment : Fragment() {
             add(CreateMenuModel(1, "See Students", R.drawable.ic_user))
             add(CreateMenuModel(2, "See Teacher", R.drawable.ic_open_book))
             add(CreateMenuModel(3, "Assign Teacher", R.drawable.ic_noticeboard))
-            add(CreateMenuModel(4, "Create Student", R.drawable.ic_attendance))
-            add(CreateMenuModel(5, "Create Teacher", R.drawable.ic_report))
-            add(CreateMenuModel(6, "Create Class", R.drawable.ic_wallet))
+            add(CreateMenuModel(4, "Assign Section", R.drawable.ic_noticeboard))
+            add(CreateMenuModel(5, "Create Student", R.drawable.ic_attendance))
+            add(CreateMenuModel(6, "Create Teacher", R.drawable.ic_report))
+            add(CreateMenuModel(7, "Create Class", R.drawable.ic_wallet))
         }
         mAdapter.list = list
         rv_create_menu.adapter = mAdapter

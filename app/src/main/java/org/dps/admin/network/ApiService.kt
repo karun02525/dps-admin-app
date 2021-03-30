@@ -34,6 +34,9 @@ interface ApiService {
     @POST("/api/assign-teacher")
     fun assignTeacherAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
 
+    @POST("/api/assign-section")
+    fun assignSectionAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
+
     @POST("/api/student/auth/register")
     fun createStudentAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
 

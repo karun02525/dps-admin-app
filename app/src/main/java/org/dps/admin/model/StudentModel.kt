@@ -62,4 +62,8 @@ data class StudentData(
     var state: String?,
     @SerializedName("surname")
     var surname: String?
-)
+){
+    override fun toString(): String {
+        return fname.toString()  +" "+  lname.toString()
+    }
+}

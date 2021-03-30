@@ -22,6 +22,8 @@
         <activity
             android:name=".ui.create.AssignTeacherActivity"
             android:label="Assign Teacher" />
+        <activity
+            android:name=".ui.create.AssignSectionActivity"/>
 
         <activity
             android:name=".ui.create.CreateStudentActivity"
