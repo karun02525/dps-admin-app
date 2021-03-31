@@ -78,9 +78,10 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
         }
     }
 
-    fun assignTeacherAsync(class_id: String, section: String,teacher_id: String) {
+    fun assignTeacherAsync(class_id: String, className: String, section: String,teacher_id: String) {
         val params: HashMap<String, Any> = HashMap()
         params["class_id"] = class_id
+        params["class_name"] = className
         params["section"] = section
         params["teacher_id"] = teacher_id
         GlobalScope.launch(Dispatchers.Main) {
@@ -98,9 +99,10 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
         }
     }
 
-    fun assignSectionAsync(class_id: String, student_id: String, section: String) {
+    fun assignSectionAsync(class_id: String, className:String,student_id: String, section: String) {
         val params: HashMap<String, Any> = HashMap()
         params["class_id"] = class_id
+        params["class_name"] = className
         params["student_id"] = student_id
         params["section"] = section
         GlobalScope.launch(Dispatchers.Main) {

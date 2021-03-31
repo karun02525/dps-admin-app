@@ -19,6 +19,7 @@ class AssignSectionActivity : AppCompatActivity() {
     private var class_id = ""
     private var student_id = ""
     private var sectionName = ""
+    private var className = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,7 @@ class AssignSectionActivity : AppCompatActivity() {
         
         btnSubmit.setOnClickListener {
             hideShowProgress(true)
-            viewModel.assignSectionAsync(class_id,student_id,sectionName)
+            viewModel.assignSectionAsync(class_id,className,student_id,sectionName)
         }
     }
 
@@ -57,6 +58,7 @@ class AssignSectionActivity : AppCompatActivity() {
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 val data: DataClasses = parent.adapter.getItem(position) as DataClasses
                 class_id = data.id.toString()
+                className = data.classname.toString()
                 viewModel.getStudentDataAsync(class_id)
                 setSpSection(data.section)
             }
