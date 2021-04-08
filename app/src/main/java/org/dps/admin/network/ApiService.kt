@@ -19,23 +19,23 @@ interface ApiService {
     @GET("/compassLocation/rest/address/autocomplete?queryString=airtel")
     fun setSuggestionsAsync(@Query("city") cityName: String): Deferred<Response<Suggestion>>
 
-    @GET("/api/get-student")
+    @GET("/api/admin/students")
     fun getStudentDataAsync(@Query("class_id") class_id: String): Deferred<Response<StudentModel>>
 
     @GET("/api/teacher")
     fun getTeacherAsync(): Deferred<Response<TeacherModel>>
 
-    @GET("/api/classes")
+    @GET("/api/admin/classes")
     fun getClassesAsync(): Deferred<Response<Classes>>
 
-    @POST("/api/classes")
+    @POST("/api/admin/classes")
     fun createClassesAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
 
     @POST("/api/assign-teacher")
     fun assignTeacherAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
 
-    @POST("/api/assign-section")
-    fun assignSectionAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
+    @POST("/api/admin/assign-rollno")
+    fun assignRollNoAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
 
     @POST("/api/student/auth/register")
     fun createStudentAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>

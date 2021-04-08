@@ -6,15 +6,22 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import kotlinx.android.synthetic.main.activity_assign_section.*
+import kotlinx.android.synthetic.main.activity_assign_rollno.*
+import kotlinx.android.synthetic.main.activity_assign_rollno.btnSubmit
+import kotlinx.android.synthetic.main.activity_assign_rollno.edit_rollno
+import kotlinx.android.synthetic.main.activity_assign_rollno.progress_circular
+import kotlinx.android.synthetic.main.activity_assign_rollno.sp_classes
+import kotlinx.android.synthetic.main.activity_create_student.*
 import org.dps.admin.R
 import org.dps.admin.model.DataClasses
 import org.dps.admin.model.StudentData
 import org.dps.admin.mvvm.ClassViewModel
+import org.dps.admin.utils.hideSoftKeyboard
+import org.dps.admin.utils.messToast
 import org.dps.admin.utils.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class AssignSectionActivity : AppCompatActivity() {
+class AssignRollNoActivity : AppCompatActivity() {
     private val viewModel: ClassViewModel by viewModel()
     private var class_id = ""
     private var student_id = ""
@@ -24,14 +31,36 @@ class AssignSectionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_assign_section)
+        setContentView(R.layout.activity_assign_rollno)
         hideShowProgress(true)
         setupViewModel()
         
         btnSubmit.setOnClickListener {
-            hideShowProgress(true)
-            viewModel.assignSectionAsync(class_id,className,student_id,sectionName)
+            val rollno = edit_rollno.text.toString()
+            when {
+                class_id.isBlank() -> {
+                    mess("Please select class")
+                }
+                student_id.isBlank() -> {
+                    mess("Please select student")
+                }
+                sectionName.isBlank() -> {
+                    mess("Please select section")
+                }
+                rollno.isEmpty() -> {
+                    mess("Please enter roll no")
+                }
+                else -> {
+                    hideShowProgress(true)
+                    viewModel.assignRollNo(class_id, className, student_id, sectionName,rollno)
+                }
+            }
         }
+    }
+
+    private fun mess(s: String) {
+        hideSoftKeyboard()
+        messToast(s)
     }
 
     private fun setupViewModel() {
@@ -78,8 +107,7 @@ class AssignSectionActivity : AppCompatActivity() {
     }
 
     private fun setSpSection(section: List<String>) {
-        val adapter: ArrayAdapter<String> =
-            ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, section)
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, section)
         sp_section.setAdapter(adapter)
         sp_section.onItemClickListener =
             AdapterView.OnItemClickListener { parent, arg1, position, id ->

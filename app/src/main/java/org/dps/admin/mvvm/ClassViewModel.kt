@@ -99,15 +99,16 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
         }
     }
 
-    fun assignSectionAsync(class_id: String, className:String,student_id: String, section: String) {
+    fun assignRollNo(vararg data: String) {
         val params: HashMap<String, Any> = HashMap()
-        params["class_id"] = class_id
-        params["class_name"] = className
-        params["student_id"] = student_id
-        params["section"] = section
+        params["class_id"] = data[0]
+        params["class_name"] = data[1]
+        params["student_id"] = data[2]
+        params["section"] = data[3]
+        params["roll_no"] = data[4]
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                restClient.webServices().assignSectionAsync(params).await().let {
+                restClient.webServices().assignRollNoAsync(params).await().let {
                     if (it.isSuccessful)
                         msg.value = JSONObject(it.body().toString()).optString("message")
                     else

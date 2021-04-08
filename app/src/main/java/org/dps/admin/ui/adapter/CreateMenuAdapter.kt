@@ -43,7 +43,7 @@ class CreateMenuAdapter(var list: List<CreateMenuModel> = listOf()) :
                         it.context.startNewActivity(AssignTeacherActivity::class.java)
                     }
                     4 -> {
-                        it.context.startNewActivity(AssignSectionActivity::class.java)
+                        it.context.startNewActivity(AssignRollNoActivity::class.java)
                     }
                     5 -> {
                         it.context.startNewActivity(CreateStudentActivity::class.java)

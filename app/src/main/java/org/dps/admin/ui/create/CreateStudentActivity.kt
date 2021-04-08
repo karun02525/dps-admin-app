@@ -113,7 +113,6 @@ class CreateStudentActivity : AppCompatActivity() {
         val fname = edit_fname.text.toString()
         val lname = edit_lname.text.toString()
         val sname = edit_sname.text.toString()
-        val rollno = edit_rollno.text.toString()
         val mobile = edit_mobile.text.toString()
         val email = edit_email.text.toString()
         val address = edit_address.text.toString()
@@ -144,9 +143,6 @@ class CreateStudentActivity : AppCompatActivity() {
             }
             dob.isEmpty() -> {
                 mess("Please select date of birth")
-            }
-            rollno.isEmpty() -> {
-                mess("Please enter roll no")
             }
             mobile.isEmpty() -> {
                 mess("Please enter mobile no")
@@ -204,13 +200,11 @@ class CreateStudentActivity : AppCompatActivity() {
             else -> {
                 val p= HashMap<String, Any>()
                 p["class_id"]=class_id
-                p["class_name"]=className
-                p["fname"]=fname
+                p["fname"]=fname.trim()
                 p["lname"]=lname
                 p["surname"]=sname
                 p["gender"]=gender
                 p["dob"]=dob
-                p["rollno"]=rollno
                 p["phone"]=mobile
                 p["email"]=email
                 p["address"]=address
