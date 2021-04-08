@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import org.dps.admin.App
 import org.dps.admin.R
 import org.dps.admin.model.DataClasses
+import org.dps.admin.model.ParentData
 import org.dps.admin.model.StudentData
 import org.dps.admin.model.TeacherData
 import org.dps.admin.network.ApiStatus
@@ -19,6 +20,7 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
      val msg = MutableLiveData<String>()
      val success = MutableLiveData<String>()
      val classData = MutableLiveData<List<DataClasses>>()
+     val parentsData = MutableLiveData<List<ParentData>>()
      val teacherList = MutableLiveData<List<TeacherData>>()
      val studentsList = MutableLiveData<List<StudentData>>()
 
@@ -52,6 +54,22 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
                 restClient.webServices().getClassesAsync().await().let {
                     if (it.isSuccessful)
                         classData.value=it.body()!!.data!!
+                    else
+                        msg.value = ApiStatus.isCheckAPIStatus(it.code(), it.errorBody())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                msg.value = App.appContext?.getString(R.string.no_internet_available)
+            }
+        }
+    }
+
+     fun getParents() {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                restClient.webServices().getParentAsync().await().let {
+                    if (it.isSuccessful)
+                        parentsData.value=it.body()!!.data!!
                     else
                         msg.value = ApiStatus.isCheckAPIStatus(it.code(), it.errorBody())
                 }
@@ -125,6 +143,22 @@ class ClassViewModel(private val restClient: RestClient) : ViewModel() {
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 restClient.webServices().createStudentAsync(params).await().let {
+                    if (it.isSuccessful)
+                        success.value = JSONObject(it.body().toString()).optString("message")
+                    else
+                        msg.value = ApiStatus.isCheckAPIStatus(it.code(), it.errorBody())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                msg.value = App.appContext?.getString(R.string.no_internet_available)
+            }
+        }
+    }
+
+    fun createParent(params: HashMap<String, Any>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                restClient.webServices().createParentAsync(params).await().let {
                     if (it.isSuccessful)
                         success.value = JSONObject(it.body().toString()).optString("message")
                     else

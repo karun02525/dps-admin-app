@@ -25,6 +25,8 @@
         <activity
             android:name=".ui.create.AssignRollNoActivity"/>
 
+        <activity android:name=".ui.create.CreateParentActivity"/>
+
         <activity
             android:name=".ui.create.CreateStudentActivity"
             android:label="Create Student" />

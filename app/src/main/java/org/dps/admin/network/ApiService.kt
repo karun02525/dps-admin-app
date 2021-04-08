@@ -1,12 +1,9 @@
 package org.dps.admin.network
 
 import com.google.gson.JsonObject
-import org.dps.admin.model.Suggestion
 import kotlinx.coroutines.Deferred
 import okhttp3.RequestBody
-import org.dps.admin.model.Classes
-import org.dps.admin.model.StudentModel
-import org.dps.admin.model.TeacherModel
+import org.dps.admin.model.*
 import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.Body
@@ -28,10 +25,13 @@ interface ApiService {
     @GET("/api/admin/classes")
     fun getClassesAsync(): Deferred<Response<Classes>>
 
+    @GET("/api/admin/parents")
+    fun getParentAsync(): Deferred<Response<ParentListModel>>
+
     @POST("/api/admin/classes")
     fun createClassesAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
 
-    @POST("/api/assign-teacher")
+    @POST("/api/admin/assign-teacher")
     fun assignTeacherAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
 
     @POST("/api/admin/assign-rollno")
@@ -39,6 +39,9 @@ interface ApiService {
 
     @POST("/api/student/auth/register")
     fun createStudentAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
+
+    @POST("/api/student/auth/parent-reg")
+    fun createParentAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>
 
     @POST("/api/teacher/auth/register")
     fun createTeacherAsync(@Body param:HashMap<String,Any>): Deferred<Response<JsonObject>>

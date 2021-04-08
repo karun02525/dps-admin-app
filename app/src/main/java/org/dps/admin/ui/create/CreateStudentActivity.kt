@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_create_student.*
 import org.dps.admin.R
 import org.dps.admin.model.DataClasses
+import org.dps.admin.model.ParentData
 import org.dps.admin.mvvm.ClassViewModel
 import org.dps.admin.utils.hideSoftKeyboard
 import org.dps.admin.utils.messToast
@@ -23,6 +24,7 @@ import kotlin.collections.HashMap
 class CreateStudentActivity : AppCompatActivity() {
     private val viewModel: ClassViewModel by viewModel()
     private var class_id = ""
+    private var parent_id = ""
     private var className = ""
     private var dob = ""
     private var postOffice = ""
@@ -39,7 +41,7 @@ class CreateStudentActivity : AppCompatActivity() {
         setupViewModel()
 
         setUpSpinner()
-
+        viewModel.getParents()
         btnSubmit.setOnClickListener {
             isCheckUI()
         }
@@ -125,10 +127,12 @@ class CreateStudentActivity : AppCompatActivity() {
         val motherLname = edit_mother_lname.text.toString()
         val motherSname = edit_mother_sname.text.toString()
         val parentPhone = edit_parent_phone.text.toString()
-        val parentId = edit_parent_id.text.toString()
         val parentOccupation = edit_parent_occupation.text.toString()
 
         when {
+            parent_id.isBlank() -> {
+                mess("Please select Parent")
+            }
             class_id.isBlank() -> {
                 mess("Please select class")
             }
@@ -194,9 +198,7 @@ class CreateStudentActivity : AppCompatActivity() {
             }
             parentOccupation.isEmpty() -> {
                 mess("Please enter occupation")
-            }parentId.isEmpty() -> {
-            mess("Please enter parent id number")
-        }
+            }
             else -> {
                 val p= HashMap<String, Any>()
                 p["class_id"]=class_id
@@ -222,7 +224,7 @@ class CreateStudentActivity : AppCompatActivity() {
                 p["mother_sname"]=motherSname
                 p["parent_phone"]=parentPhone
                 p["parent_occupation"]=parentOccupation
-                p["parent_id"]=parentId
+                p["parent_id"]=parent_id
                 p["student_picture"]="avatar"
                 hideShowProgress(true)
                 viewModel.createStudentAsync(p)
@@ -240,6 +242,10 @@ class CreateStudentActivity : AppCompatActivity() {
             hideShowProgress(false)
             setSpClass(it)
         })
+        viewModel.parentsData.observe(this, Observer {
+            hideShowProgress(false)
+            setSpParent(it)
+        })
         viewModel.success.observe(this, Observer {
             hideShowProgress(false)
             toast(it)
@@ -251,6 +257,7 @@ class CreateStudentActivity : AppCompatActivity() {
     }
 
     private fun setSpClass(list: List<DataClasses>) {
+        //Class dropdown
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         sp_classes.setAdapter(adapter)
@@ -261,7 +268,20 @@ class CreateStudentActivity : AppCompatActivity() {
                 class_id = data.id.toString()
                 className = data.classname.toString()
             }
+    }
 
+    private fun setSpParent(list: List<ParentData>) {
+        //parents dropdown
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, list)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        sp_parent.setAdapter(adapter)
+
+        sp_parent.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, _, position, _ ->
+                val data: ParentData = parent.adapter.getItem(position) as ParentData
+                parent_id = data.parentId.toString()
+               // className = data.classname.toString()
+            }
     }
 
     private fun hideShowProgress(flag: Boolean) {

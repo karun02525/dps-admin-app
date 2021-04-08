@@ -44,6 +44,7 @@ class CreateFragment : Fragment() {
             add(CreateMenuModel(5, "Create Student", R.drawable.ic_attendance))
             add(CreateMenuModel(6, "Create Teacher", R.drawable.ic_report))
             add(CreateMenuModel(7, "Create Class", R.drawable.ic_wallet))
+            add(CreateMenuModel(8, "Create Parent", R.drawable.ic_attendance))
         }
         mAdapter.list = list
         rv_create_menu.adapter = mAdapter
