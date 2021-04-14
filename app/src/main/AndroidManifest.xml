@@ -15,42 +15,32 @@
         android:theme="@style/Theme.DPSAdminApp"
         android:usesCleartextTraffic="true">
 
-        <activity
-            android:name=".ui.create.CreateClassActivity"
-            android:label="Create Class" />
-
-        <activity
-            android:name=".ui.create.AssignTeacherActivity"
-            android:label="Assign Teacher" />
-        <activity
-            android:name=".ui.create.AssignRollNoActivity"/>
-
-        <activity android:name=".ui.create.CreateParentActivity"/>
-
-        <activity
-            android:name=".ui.create.CreateStudentActivity"
-            android:label="Create Student" />
-
-        <activity
-            android:name=".ui.create.CreateTeacherActivity"
-            android:label="Create Teacher" />
-
-        <activity
-            android:name=".ui.create.ShowStudentActivity"
-            />
-
-        <activity android:name=".ui.create.ShowTeacherActivity" />
-
-        <activity
-            android:name=".DashboardActivity"
-            android:theme="@style/Theme.DPSAdminApp"
-            >
+        <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.create.CreateClassActivity"
+            android:label="Create Class" />
+        <activity
+            android:name=".ui.create.AssignTeacherActivity"
+            android:label="Assign Teacher" />
+        <activity android:name=".ui.create.AssignRollNoActivity" />
+        <activity android:name=".ui.create.CreateParentActivity" />
+        <activity
+            android:name=".ui.create.CreateStudentActivity"
+            android:label="Create Student" />
+        <activity
+            android:name=".ui.create.CreateTeacherActivity"
+            android:label="Create Teacher" />
+        <activity android:name=".ui.create.ShowStudentActivity" />
+        <activity android:name=".ui.create.ShowTeacherActivity" />
+        <activity android:name=".DashboardActivity" />
+
     </application>
 
 </manifest>

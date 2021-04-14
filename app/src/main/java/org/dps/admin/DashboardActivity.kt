@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_dashboard_teacher.*
 import org.dps.admin.ui.fragments.CreateFragment
 import org.dps.admin.ui.fragments.HomeFragment
+import org.dps.admin.ui.fragments.NotificationFragment
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -80,7 +81,7 @@ class DashboardActivity : AppCompatActivity() {
                 0 ->  HomeFragment.instance()
                 1 -> CreateFragment.instance()
                 2 -> HomeFragment.instance()
-                3 -> HomeFragment.instance()
+                3 -> NotificationFragment.instance()
                 4 -> HomeFragment.instance()
                 else -> HomeFragment.instance()
             }

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import org.dps.admin.R
@@ -50,4 +51,9 @@ fun Context.messToast(message: String): Snackbar {
 
 fun Context.startNewActivity(cls: Class<*>) {
     this.startActivity(Intent(this, cls))
+}
+
+fun AppCompatActivity.startNewActivityFinish(cls: Class<*>) {
+    this.startActivity(Intent(this, cls))
+    finish()
 }
