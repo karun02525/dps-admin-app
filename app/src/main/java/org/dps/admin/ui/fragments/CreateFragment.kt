@@ -31,9 +31,6 @@ class CreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_back.visibility=View.GONE
-        tv_toolbar.text="Creates Info"
-
 
         val list: ArrayList<CreateMenuModel> = arrayListOf()
         list.run {
@@ -41,10 +38,6 @@ class CreateFragment : Fragment() {
             add(CreateMenuModel(2, "See Teacher", R.drawable.ic_open_book))
             add(CreateMenuModel(3, "Assign Teacher", R.drawable.ic_noticeboard))
             add(CreateMenuModel(4, "Assign Roll No", R.drawable.ic_noticeboard))
-            add(CreateMenuModel(5, "Create Student", R.drawable.ic_attendance))
-            add(CreateMenuModel(6, "Create Teacher", R.drawable.ic_report))
-            add(CreateMenuModel(7, "Create Class", R.drawable.ic_wallet))
-            add(CreateMenuModel(8, "Create Parent", R.drawable.ic_attendance))
         }
         mAdapter.list = list
         rv_create_menu.adapter = mAdapter

@@ -1,13 +1,10 @@
 package org.dps.admin.ui.fragments
 
-//import com.facebook.drawee.backends.pipeline.Fresco
-//import kotlinx.android.synthetic.main.fragment_home.*
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.dps.admin.R
 
@@ -25,7 +22,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Glide.with(this).asGif().load("https://media3.giphy.com/media/XHwMtmnrD313nZFFuV/source.gif").into(mSimpleDraweeView);
+        marqueeText.text = createMarqueeText();
+        marqueeText.requestFocus()
+    }
 
+    private fun createMarqueeText(): String {
+        val text = StringBuilder()
+        text.append("Dear parents Greetings of the day Hope you all are doing well. Stay healthy & Safe")
+        text.append("This is to inform you that school has done some changes in the *FEE payments*…")
+        return text.toString()
     }
 }

@@ -7,10 +7,10 @@
     android:title="Home" />
 
   <item
-    android:id="@+id/action_create"
+    android:id="@+id/action_assgin"
     android:enabled="true"
-    android:icon="@drawable/ic_noties"
-    android:title="Create" />
+    android:icon="@drawable/ic_assign"
+    android:title="Assgin" />
 
 
   <item
@@ -26,12 +26,6 @@
       android:icon="@drawable/ic_person"
       android:title="Profile"
       />
-
-  <item
-      android:id="@+id/action_more"
-      android:enabled="true"
-      android:icon="@drawable/ic_read_more"
-      android:title="More"
-      />
+  
 
 </menu>

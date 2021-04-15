@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
-import org.dps.admin.DashboardActivity
+import org.dps.admin.MainActivity
 import org.dps.admin.R
 import org.dps.admin.utils.startNewActivityFinish
 
@@ -14,11 +14,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-                startNewActivityFinish(DashboardActivity::class.java)
+                startNewActivityFinish(MainActivity::class.java)
         }, 5000)
 
 

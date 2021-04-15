@@ -5,10 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/custom_toolbar" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_create_menu"
         android:layout_width="match_parent"

@@ -7,12 +7,17 @@ import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.popwoot.carouselbanner.interfaces.CarouselImageFactory
 import org.dps.admin.R
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 fun log(s:String){
@@ -56,4 +61,20 @@ fun Context.startNewActivity(cls: Class<*>) {
 fun AppCompatActivity.startNewActivityFinish(cls: Class<*>) {
     this.startActivity(Intent(this, cls))
     finish()
+}
+
+
+class ImageFactory : CarouselImageFactory {
+    override fun onLoadFactory(url: String, view: ImageView) {
+        Glide.with(view).load(url).into(view)
+    }
+}
+
+fun Date.toString(format: String, locale: Locale = Locale.getDefault()): String {
+    val formatter = SimpleDateFormat(format, locale)
+    return formatter.format(this)
+}
+
+fun getCurrentDateTime(): Date {
+    return Calendar.getInstance().time
 }
